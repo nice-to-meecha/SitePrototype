@@ -4,6 +4,11 @@
     background-color: #16423c;
 }
 
+.header-video {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
 
 .opening-text {
     width: 100vw;
