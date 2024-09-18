@@ -1,0 +1,42 @@
+.header {
+    width: 100vw;
+    height: 100vh;
+    background-color: #16423c;
+}
+
+
+.opening-text {
+    width: 100vw;
+    height: 50vh;
+    background-color: #6a9c89;
+}
+     
+.service-intros {
+    width: 100vw;
+    height: 100vh;
+    background-color: #c4dad2;
+}
+
+.certs {
+    width: 100vw;
+    height: 50vh;
+    background-color: #e9efec;
+}
+
+.reviews {
+    width: 100vw;
+    height: 75vh;
+    background-color: #c4dad2;
+}
+
+.call-to-action {
+    width: 100vw;
+    height: 50vh;
+    background-color: #6a9c89;
+}
+
+.footer {
+    width: 100vw;
+    height: 100vh;
+    background-color: #16423c;
+}
