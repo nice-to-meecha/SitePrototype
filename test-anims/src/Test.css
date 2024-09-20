@@ -10,10 +10,35 @@
     width: 100%;
 }
 
+.video-transition {
+    position: absolute;
+    bottom: -5vh;
+    height: 10vh;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 40%);
+    filter: blur(8px);
+}
+
 .opening-text {
     width: 100vw;
-    height: 50vh;
-    background-color: #6a9c89;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opening-text > p {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    font-size: 5em;
+    margin: auto;
+    opacity: 0%;
+    filter: blur(20px);
+}
+
+.opening-text > p.show {
+    animation: fade-in 0.5s linear forwards;
 }
      
 .service-intros {
@@ -44,4 +69,11 @@
     width: 100vw;
     height: 100vh;
     background-color: #16423c;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 100%;
+        filter: blur(0px);
+    }
 }
