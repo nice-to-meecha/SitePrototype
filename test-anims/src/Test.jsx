@@ -38,11 +38,15 @@ function App() {
         <div className='opening-text'>
           <p ref={fadeInTextRef}>We are here to show you a better way</p>
         </div>
-        <div className='service-intros'/>
+        <div className='service-cards'>
+          <div className='card'>Accounting</div>
+          <div className='card'>Payroll</div>
+          <div className='card'>Advisory</div>
+        </div>
         <div className='certs'/>
         <div className='reviews'/>
         <div className='call-to-action'/>
-        <div className='footer'/>
+        <footer></footer>
       </>
     )
 }

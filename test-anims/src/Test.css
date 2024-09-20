@@ -41,10 +41,42 @@
     animation: fade-in 0.5s linear forwards;
 }
      
-.service-intros {
-    width: 100vw;
-    height: 100vh;
-    background-color: #c4dad2;
+.service-cards {
+    width: 90vw;
+    height: auto;
+    margin: 30% auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, [card-row] 1fr);
+    row-gap: 30vh;
+    border: 5px solid black;
+}
+
+.card {
+    border: 3px solid gray;
+    border-radius: 30px;
+    background-color: white;
+    height: 70vh;
+    position: sticky;
+    top: 10vh;
+}
+
+.card:nth-child(1) {
+    grid-area: card-row 1;
+    background-color: red;
+    z-index: 1;
+}
+
+.card:nth-child(2) {
+    grid-area: card-row 2;
+    background-color: blue;
+    z-index: 2;
+}
+
+.card:nth-child(3) {
+    grid-area: card-row 3;
+    background-color: green;
+    z-index: 3;
 }
 
 .certs {
@@ -65,10 +97,14 @@
     background-color: #6a9c89;
 }
 
-.footer {
+footer {
     width: 100vw;
     height: 100vh;
     background-color: #16423c;
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    z-index: -1;
 }
 
 @keyframes fade-in {
