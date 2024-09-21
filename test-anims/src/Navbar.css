@@ -8,6 +8,7 @@
     justify-content: flex-end;
     align-items: center;
     column-gap: 10px;
+    font-size: 1.5em;
     padding: 0px 10px;
     z-index: 1;
 }

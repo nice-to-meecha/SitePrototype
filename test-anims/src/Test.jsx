@@ -36,15 +36,30 @@ export default function Test() {
           <div className='video-transition'></div>
         </div>
         <div className='opening-text'>
-          <p ref={fadeInTextRef}>We are here to show you a better way</p>
+          <p ref={fadeInTextRef}>Inspirational text</p>
         </div>
         <div className='service-cards'>
           <div className='card'>Accounting</div>
           <div className='card'>Payroll</div>
           <div className='card'>Advisory</div>
         </div>
-        <div className='certs'/>
-        <div className='reviews'/>
+        <div className='certs'>
+          <marquee>Certifications</marquee>
+        </div>
+        <div className='reviews'>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+        </div>
         <div className='call-to-action'/>
       </>
     )
