@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './Test.css'
 
-function App() {
+export default function Test() {
 
   const fadeInTextRef = useRef(null);
   let fadeInTextObserver;
@@ -46,9 +46,7 @@ function App() {
         <div className='certs'/>
         <div className='reviews'/>
         <div className='call-to-action'/>
-        <footer></footer>
       </>
     )
 }
 
-export default App

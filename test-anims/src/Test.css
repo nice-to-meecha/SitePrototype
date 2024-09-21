@@ -97,16 +97,6 @@
     background-color: #6a9c89;
 }
 
-footer {
-    width: 100vw;
-    height: 100vh;
-    background-color: #16423c;
-    position: sticky;
-    bottom: 0px;
-    left: 0px;
-    z-index: -1;
-}
-
 @keyframes fade-in {
     100% {
         opacity: 100%;
