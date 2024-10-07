@@ -4,10 +4,42 @@ export default function Footer() {
   return (
     <footer className='footer'>
         <div className='placeholder'>
-        <svg width="500" height="500" viewBox="0 0 24 24">
-            <path fill='#FFFFFF' fillOpacity={0.2}
-            d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" />
-        </svg>
+          <svg version="1.1"
+              width="500"
+              height="500"
+              viewBox="0 0 500 500"
+              xmlns="http://www.w3.org/2000/svg"
+              id="bbs-logo-footer">
+
+            <path
+              d="M10,490 v-320 a159,159,0,0,1,159,-159 v340 Z"
+              fill="#ffffff50"
+              // stroke="#fff"
+              // strokeOpacity={0.25}
+              // strokeWidth={3}
+            />
+            <path
+              d="M170,490 v-320 a159,159,0,0,1,159,-159 v340 Z"
+              fill="#ffffff50"
+              // stroke="#fff"
+              // strokeOpacity={0.25}
+              // strokeWidth={3}
+            />
+            <path
+              d="M330,490 v-320 a159,159,0,0,1,159,-159 v340 Z"
+              fill="#ffffff50"
+              // stroke="#fff"
+              // strokeOpacity={0.25}
+              // strokeWidth={3}
+            />
+            <path
+              d="M490,490 v-80 l-80,80 Z"
+              fill="#ffffff50"
+              // stroke="#fff"
+              // strokeOpacity={0.25}
+              // strokeWidth={3}
+            />
+          </svg>
         </div>
     </footer>
   )

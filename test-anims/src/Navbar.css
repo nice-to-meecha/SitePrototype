@@ -16,3 +16,10 @@
 .home {
     margin-right: auto;
 }
+
+#bbs-logo-navbar {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: auto;
+    height: 40px;
+}

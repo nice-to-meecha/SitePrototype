@@ -15,3 +15,13 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
+#bbs-logo-footer {
+    width: 25%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
