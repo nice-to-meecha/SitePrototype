@@ -12,7 +12,7 @@ export default function Test() {
   };
 
   const fadeInTextRef = useRef(null), animRef = useRef(null), slide1Ref = useRef(null),
-    slide2Ref = useRef(null);
+    slide2Ref = useRef(null), affiliations = useRef(null);
   // const accountingCardRef = useRef(null);
   // const payrollCardRef = useRef(null);
   // const advisoryCardRef = useRef(null);
@@ -38,7 +38,8 @@ export default function Test() {
       threshold: 1.0,
       rootMargin: "-10% 0%"
     });
-    fadeInTextObserver.observe(fadeInTextRef.current);
+
+    [fadeInTextRef.current, ...affiliations.current.children].forEach(ref => fadeInTextObserver.observe(ref));
 
     //  shrinkObserver = new IntersectionObserver((entries, observer) => {
     //   entries.forEach(el => {
@@ -124,8 +125,18 @@ export default function Test() {
           />
         </div>
       </div>
-        <div className='certs'>
-          <marquee>Affiliations</marquee>
+        <div className='affiliations' ref={affiliations}>
+          
+            <img src="https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg" className="mcdonalds" />
+          
+          
+            <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" className="google" />
+          
+          
+            <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" className="apple" />
+          
+            <img src="https://www.svgrepo.com/show/303137/airbnb-2-logo.svg" className="airbnb" />
+          
         </div>
         <div className='reviews'>
           <div className='review-card'></div>

@@ -37,7 +37,7 @@
     filter: blur(20px);
 }
 
-.opening-text > p.show {
+*.show {
     animation: fade-in 0.5s linear forwards;
 }
      
@@ -103,7 +103,7 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    padding: 120vh 0;
+    margin: 20vh 0;
     border: solid rgba(66, 71, 112, 0.06);
     border-width: 0 2px;
   }
@@ -142,14 +142,49 @@
     object-fit: cover;
   }
 
-.certs {
-    display: flex;
-    align-items: center;
+.affiliations {
     width: 100vw;
-    height: 50vh;
-    color:rgba(0, 0, 0, 0.4);
-    -webkit-text-stroke: 3px #000;
-    font-size: 20em;
+    
+    display: grid;
+    justify-items: flex-end;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 25vh);
+    grid-template-areas:
+        "mcdonalds ."
+        "mcdonalds google"
+        "apple google"
+        "apple airbnb"
+        ". airbnb";
+    column-gap: 75px;
+    margin-bottom: 25vh;
+}
+
+.mcdonalds, .google, .apple, .airbnb {
+    width: 50%;
+    height: auto;
+    opacity: 0%;
+    filter: blur(20px);
+}
+
+.google, .airbnb {
+    justify-self: flex-start;
+}
+
+.mcdonalds {
+    grid-area: mcdonalds;
+}
+
+.google {
+    grid-area: google;
+}
+
+.apple {
+    grid-area: apple;
+}
+
+.airbnb {
+    grid-area: airbnb;
 }
 
 .reviews {
