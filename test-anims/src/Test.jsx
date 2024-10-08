@@ -3,12 +3,21 @@ import './Test.css'
 
 export default function Test() {
 
-  const fadeInTextRef = useRef(null);
-  const accountingCardRef = useRef(null);
-  const payrollCardRef = useRef(null);
-  const advisoryCardRef = useRef(null);
-  const attestationsCardRef = useRef(null);
-  let fadeInTextObserver, shrinkObserver;
+  const img1 = "https://cdn.pixabay.com/photo/2023/10/24/12/01/pumpkins-8338100_1280.jpg";
+  const img2 = "https://cdn.pixabay.com/photo/2024/09/21/19/23/corn-9064747_960_720.jpg";
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.6
+  };
+
+  const fadeInTextRef = useRef(null), animRef = useRef(null), slide1Ref = useRef(null),
+    slide2Ref = useRef(null);
+  // const accountingCardRef = useRef(null);
+  // const payrollCardRef = useRef(null);
+  // const advisoryCardRef = useRef(null);
+  // const attestationsCardRef = useRef(null);
+  let fadeInTextObserver, shrinkObserver, stickySlideObserver;
 
   window.addEventListener("scroll", () => {
     // Percentage of scroll height over entire body
@@ -29,21 +38,37 @@ export default function Test() {
       threshold: 1.0,
       rootMargin: "-10% 0%"
     });
-   fadeInTextObserver.observe(fadeInTextRef.current);
+    fadeInTextObserver.observe(fadeInTextRef.current);
 
-   shrinkObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.classList.add("shrink");
-        observer.unobserve(el.target);
+    //  shrinkObserver = new IntersectionObserver((entries, observer) => {
+    //   entries.forEach(el => {
+    //     if (el.isIntersecting) {
+    //       el.target.classList.add("shrink");
+    //       observer.unobserve(el.target);
+    //     }
+    //   })
+    // }, {
+    //   threshold: 1.0,
+    //   rootMargin: "-10% 0%"
+    // });
+    // [accountingCardRef, payrollCardRef, advisoryCardRef].forEach(el => 
+    //   shrinkObserver.observe(el.current));
+
+    stickySlideObserver = new IntersectionObserver((entries, observer) => {
+      const intersectingEntry = entries.find(entry => entry.isIntersecting);
+      if (intersectingEntry) {
+        let newImg;
+        if (intersectingEntry.target.id === "slide1") {
+          newImg = img1;
+        } else {
+          newImg = img2;
+        }
+        
+        animRef.current.setAttribute("src", newImg);
       }
-    })
-  }, {
-    threshold: 1.0,
-    rootMargin: "-10% 0%"
-  });
-  [accountingCardRef, payrollCardRef, advisoryCardRef].forEach(el => 
-    shrinkObserver.observe(el.current));
+    }, options);
+
+    [slide1Ref, slide2Ref].forEach(slide => stickySlideObserver.observe(slide.current));
   })
 
     return (
@@ -63,12 +88,42 @@ export default function Test() {
         <div className='opening-text'>
           <p ref={fadeInTextRef}>Inspirational text</p>
         </div>
-        <div className='service-cards'>
+        {/* <div className='service-cards'>
           <div className='card' ref={accountingCardRef}>Accounting</div>
           <div className='card' ref={payrollCardRef}>Payroll</div>
           <div className='card' ref={advisoryCardRef}>Advisory</div>
           <div className='card' ref={attestationsCardRef}>Attestations</div>
+        </div> */}
+        <div className="sliding-container">
+        <div className="info">
+          <div className="slide" id="slide1" ref={slide1Ref}>
+            <h3>Doing Things</h3>
+            <p>
+              We get things done like no one else can. We'll guide
+              you through the process, each step of the way. You want
+              it? We've got it. We can assure things will be just the
+              way you want them. Have them your way... This doesn't
+              count as copyright infringement, right..? 😅
+            </p>
+          </div>
+          <div className="slide" id="slide2" ref={slide2Ref}>
+            <h3>Continuing to Do Things</h3>
+            <p>
+              Legal matters aside... This. Is. What. We. Do. It is
+              what it is, and we have what you need. It makes perfect
+              cents (haha) to go with us. Just keep scrolling, if you
+              need more convincing.
+            </p>
+          </div>
         </div>
+        <div className="anim-container">
+          <img
+            className="anim"
+            src="https://cdn.pixabay.com/photo/2023/10/24/12/01/pumpkins-8338100_1280.jpg"
+            ref={animRef}
+          />
+        </div>
+      </div>
         <div className='certs'>
           <marquee>Affiliations</marquee>
         </div>

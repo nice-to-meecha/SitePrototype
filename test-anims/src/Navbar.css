@@ -10,7 +10,7 @@
     column-gap: 10px;
     font-size: 1.5em;
     padding: 0px 10px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .home {
@@ -22,4 +22,11 @@
     margin-bottom: 5px;
     width: auto;
     height: 40px;
+}
+
+.navbar-link {
+    padding: 8px 4px;
+    background-color: #ffffff25;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
 }

@@ -11,13 +11,18 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  position: relative;
   z-index: 1;
+
+  --bbs-blue: #2c365d;
 }
 
 main {
   background-color: white;
+  position: relative;
   z-index: 1;
-  /* margin-bottom: 0; */
+  margin-bottom: 0;
 }
 
 a {

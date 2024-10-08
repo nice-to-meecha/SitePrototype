@@ -20,13 +20,13 @@ export default function Navbar() {
           </svg>
         </Link>
       </div>
-      <div className='about'>
+      <div className='navbar-link'>
         <Link to='/about'>About</Link>
       </div>
-      <div className='services'>
+      <div className='navbar-link'>
         <Link to='/services'>Services</Link>
       </div>
-      <div className='Contact'>
+      <div className='navbar-link'>
         <Link to='/contact'>Contact</Link>
       </div>
     </div>
