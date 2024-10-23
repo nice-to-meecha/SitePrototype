@@ -98,49 +98,101 @@
 }
 
 .sliding-container {
-    width: 85%;
+    width: 92.5%;
     display: flex;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
     margin: 20vh 0;
     border: solid rgba(66, 71, 112, 0.06);
     border-width: 0 2px;
-  }
+}
   
-  .info {
+.info {
     width: 50%;
     display: flex;
     flex-direction: column;
     gap: 50vh;
-  }
+}
   
-  .slide {
+.slide {
     min-height: 60vh;
-    padding: 0% 20% 0% 3%;
-  }
+    padding: 0% 0% 0% 3%;
+}
   
-  .slide > h3 {
+h3 {
     font-size: 200%;
-  }
+}
   
-  .slide > p {
+.slide > p {
     font-size: 125%;
-  }
+}
+
+.hide-moving-slide {
+    overflow-x: hidden;
+}
+
+.intro-service-slide {
+    display: flex;
+    justify-content: flex-start;
+    transition: transform 1s;
+
+    button {
+        margin-right: 10px;
+        color: #000;
+        border: solid black 1px;
+        background-color: #00000000;
+    }
+}
+
+.intro-service-slide.move {
+    transform: translateX(-100%);
+}
+
+.service-slide {
+    display: none;
+}
+
+.service-slide.appear {
+    display: block;
+}
   
-  .anim-container {
+.anim-container {
     width: 50%;
     height: 60vh;
     position: sticky;
     top: 20vh;
     border: solid red 3px;
-  }
+}
   
-  .anim {
+.anim {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
+
+.side-service-button {
+    writing-mode: vertical-lr;
+    height: 60vh;
+    font-size: 5rem;
+    text-align: center;
+    position: sticky;
+    transform: rotate(-180deg);
+    top: 20vh;
+    cursor: pointer;
+    /* width: 0; */
+    /* visibility: hidden; */
+    overflow: hidden;
+}
+
+.services-text {
+    transform: translateX(-100%);
+    transition: transform 0.5s linear;
+    transition-delay: 0s;
+}
+
+.services-text.slide-in {
+    transform: translateX(0%);
+    transition-delay: 0.5s;
+}
 
 .affiliations {
     width: 100vw;
@@ -190,8 +242,9 @@
 .reviews {
     width: 100vw;
     height: 75vh;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     display: flex;
+    justify-content: flex-end;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 10px;
@@ -203,14 +256,31 @@
     border-radius: 30px;
     background-color: white;
     width: auto;
-    min-width: 25vw;
+    min-width: 10vw;
     height: 50vh;
+    transition: flex-grow 0.5s ease-in-out;
+}
+
+.review-card:hover {
+    flex-grow: 2;
 }
 
 .call-to-action {
-    width: 100vw;
-    height: 50vh;
-    background-image: url('placeholder-waves.webp');
+    width: 100%;
+    height: 75vh;
+    background: url("tree-mountain-wallpaper.jpg");
+    background-size: cover;
+    position: relative;
+}
+
+.call-to-action .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Franklin Gothic Heavy";
+    font-size: 15vw;
+    color: whitesmoke;
 }
 
 @keyframes fade-in {
