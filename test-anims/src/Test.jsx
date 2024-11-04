@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './Test.css'
+import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 export default function Test() {
 
@@ -13,7 +15,9 @@ export default function Test() {
 
   const fadeInTextRef = useRef(null), animRef = useRef(null), slide1Ref = useRef(null),
     slide2Ref = useRef(null), affiliations = useRef(null), sideServiceButton = useRef(null),
-    hideMovingSlide = useRef(null), parallaxBg = useRef(null);
+    hideMovingSlide = useRef(null), parallaxBg = useRef(null), snapContainer = useRef(null),
+    firstWords = useRef(null), growingBackground = useRef(null), borderContainer = useRef(null),
+    topBorder = useRef(null), leftBorder = useRef(null);
   // const accountingCardRef = useRef(null);
   // const payrollCardRef = useRef(null);
   // const advisoryCardRef = useRef(null);
@@ -31,64 +35,197 @@ export default function Test() {
     }, false);
   })
 
-  useEffect(() => {
-    fadeInTextObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(el => {
-        if (el.isIntersecting) {
-          el.target.classList.add("show");
-          observer.unobserve(el.target);
-        }
-      })
-    }, {
-      threshold: 1.0,
-      rootMargin: "-10% 0%"
+  // useEffect(() => {
+  //   fadeInTextObserver = new IntersectionObserver((entries, observer) => {
+  //     entries.forEach(el => {
+  //       if (el.isIntersecting) {
+  //         el.target.classList.add("show");
+  //         observer.unobserve(el.target);
+  //       }
+  //     })
+  //   }, {
+  //     threshold: 1.0,
+  //     rootMargin: "-10% 0%"
+  //   });
+
+  //   [fadeInTextRef.current, ...affiliations.current.children].forEach(ref => fadeInTextObserver.observe(ref));
+
+  //   //  shrinkObserver = new IntersectionObserver((entries, observer) => {
+  //   //   entries.forEach(el => {
+  //   //     if (el.isIntersecting) {
+  //   //       el.target.classList.add("shrink");
+  //   //       observer.unobserve(el.target);
+  //   //     }
+  //   //   })
+  //   // }, {
+  //   //   threshold: 1.0,
+  //   //   rootMargin: "-10% 0%"
+  //   // });
+  //   // [accountingCardRef, payrollCardRef, advisoryCardRef].forEach(el => 
+  //   //   shrinkObserver.observe(el.current));
+
+  //   stickySlideObserver = new IntersectionObserver((entries, observer) => {
+  //     const intersectingEntry = entries.find(entry => entry.isIntersecting);
+  //     if (intersectingEntry) {
+  //       let newImg;
+  //       console.log(intersectingEntry.target.id);
+  //       if (intersectingEntry.target.id === "slide1") {
+  //         newImg = img1;
+  //       } else {
+  //         newImg = img2;
+  //       }
+        
+  //       animRef.current.setAttribute("src", newImg);
+  //     }
+  //   }, options);
+
+  //   [slide1Ref, slide2Ref].forEach(slide => stickySlideObserver.observe(slide.current));
+  // })
+
+  // function clickServiceSlide(event) {
+  //   // console.log(event);
+  //   slide1Ref.current.classList.toggle("move");
+  //   sideServiceButton.current.classList.toggle("slide-in");
+  //   hideMovingSlide.current.classList.toggle("hide");
+  //   document.querySelectorAll(".service-slide").forEach(slide => slide.classList.toggle("appear"));
+  // }
+
+  // function parallax(event) {
+  //   console.log(event);
+  // }
+
+
+
+  useGSAP(() => {
+    const openingTextAnim = gsap.to(fadeInTextRef.current, {
+      opacity: "100%",
+      filter: "blur(0px)",
+      duration: 0.75,
+      onComplete: logComplete,
+      onCompleteParams: ["fade in"],
+      scrollTrigger: {
+        trigger: fadeInTextRef.current,
+        start: "-10% bottom",
+        end: "-10% 60%",
+        scrub: false,
+        toggleActions: "none play none reset",
+      }
     });
 
-    [fadeInTextRef.current, ...affiliations.current.children].forEach(ref => fadeInTextObserver.observe(ref));
+    function logComplete(animName = "\b") {
+      console.log(`${animName} completed!`);
+    }
 
-    //  shrinkObserver = new IntersectionObserver((entries, observer) => {
-    //   entries.forEach(el => {
-    //     if (el.isIntersecting) {
-    //       el.target.classList.add("shrink");
-    //       observer.unobserve(el.target);
-    //     }
-    //   })
-    // }, {
-    //   threshold: 1.0,
-    //   rootMargin: "-10% 0%"
+    const shiftBackground = gsap.timeline({
+      paused: true,
+      onStart: console.log,
+      onStartParams: ["Starting shift background"],
+      onComplete: logComplete,
+      onCompleteParams: ["shift background"],
+      // scrollTrigger: {
+      //   trigger: growingBackground.current,
+      //   start: "top+=10% 20%",
+      //   end: "bottom top",
+      //   scrub: false,
+      //   toggleActions: "play none none reverse",
+      //   markers: true,
+      //   invalidateOnRefresh: true,
+      // },
+    });
+    shiftBackground.to(growingBackground.current, {
+        width: "100%",
+        duration: 1,
+      })
+      .set(growingBackground.current, {
+        left: "auto",
+        right: 0,
+      })
+      .to(growingBackground.current, {
+        width: "50%",
+        duration: 1,
+      });
+
+    function logAndPlay(animName, timeline) {
+      console.log(`${animName} completed!`);
+      timeline.invalidate().play(0);
+    }
+
+    function playOnLeave(scrollTrigger) {
+      console.log("OnLeave triggered");
+      shiftBackground.invalidate().play(0);
+    }
+
+    // const snap = gsap.timeline();
+    // snap.to(growingBackground.current, {
+    //   width: "75%",
+    //   onComplete: logAndPlay,
+    //   onCompleteParams: ["snap", shiftBackground],
+    //   scrollTrigger: {
+    //     trigger: growingBackground.current,
+    //     start: "top 20%",
+    //     end: "top+=10% 20%",
+    //     scrub: 0.5,
+    //     markers: true,
+    //     // snap: {
+    //     //   delay: 0,
+    //     //   duration: 0.1,
+    //     // },
+    //     // once: false,
+    //     invalidateOnRefresh: true,
+    //     // refreshPriority: 1,
+    //   }, 
     // });
-    // [accountingCardRef, payrollCardRef, advisoryCardRef].forEach(el => 
-    //   shrinkObserver.observe(el.current));
 
-    stickySlideObserver = new IntersectionObserver((entries, observer) => {
-      const intersectingEntry = entries.find(entry => entry.isIntersecting);
-      if (intersectingEntry) {
-        let newImg;
-        console.log(intersectingEntry.target.id);
-        if (intersectingEntry.target.id === "slide1") {
-          newImg = img1;
-        } else {
-          newImg = img2;
-        }
-        
-        animRef.current.setAttribute("src", newImg);
+    
+
+    // snap.call(shiftBackground.play);
+
+
+    const borderAnim = gsap.timeline({
+      scrollTrigger: {
+        trigger: borderContainer.current,
+        start: "20% 20%",
+        scrub: false,
+        toggleActions: "play none none reset",
+        markers: true,
+        invalidateOnRefresh: true,
       }
-    }, options);
+    });
 
-    [slide1Ref, slide2Ref].forEach(slide => stickySlideObserver.observe(slide.current));
-  })
+    borderAnim.to(leftBorder.current, {
+      width: "100%",
+      duration: 1,
+    })
+      .to(topBorder.current, {
+        height: "240vh",
+        duration: 2,
+      }, "<")
+      .to(".inv-slide", {
+        opacity: "100%",
+        stagger: 0.3,
+      }, "<1.1");
 
-  function clickServiceSlide(event) {
-    // console.log(event);
-    slide1Ref.current.classList.toggle("move");
-    sideServiceButton.current.classList.toggle("slide-in");
-    hideMovingSlide.current.classList.toggle("hide");
-    document.querySelectorAll(".service-slide").forEach(slide => slide.classList.toggle("appear"));
-  }
+    const sectionColorChange = gsap.timeline({
+      scrollTrigger: {
+        trigger: "section",
+        start: "20% 20%",
+        scrub: false,
+        toggleActions: "play none none reset",
+        markers: true,
+        invalidateOnRefresh: true
+      }
+    });
 
-  function parallax(event) {
-    console.log(event);
-  }
+    sectionColorChange.to("section", {
+      "--trans-perc": "0%",
+      duration: 0.75,
+    })
+      .to("section", {
+        "--height": "100%",
+        duration: 1,
+      })
+
+  }, []);
 
     return (
       <>
@@ -113,10 +250,7 @@ export default function Test() {
           <div className='card' ref={advisoryCardRef}>Advisory</div>
           <div className='card' ref={attestationsCardRef}>Attestations</div>
         </div> */}
-        <div className="sliding-container">
-          <div className="side-service-button">
-            <div className="services-text" onClick={clickServiceSlide} ref={sideServiceButton}>Services</div>
-          </div>
+        {/* <div className="sliding-container">
           <div className="info">
             <div className="hide-moving-slide" ref={hideMovingSlide}>
               <div className="slide intro-service-slide" ref={slide1Ref} id="slide1">
@@ -130,7 +264,6 @@ export default function Test() {
                     count as copyright infringement, right..? 😅
                   </p>
                 </div>
-                <button className="open-services" onClick={clickServiceSlide}>{"<"}</button>
               </div>
             </div>
             <div className="slide service-slide" id="accounting-slide">
@@ -180,30 +313,77 @@ export default function Test() {
               ref={animRef}
             />
           </div>
+        </div> */}
+        <div className='snap-container' ref={snapContainer}>
+          <div className='first-words' ref={firstWords}>
+            <h3>Words</h3>
+            <p>More and more words</p>
+          </div>
+          <div className='first-image'>
+            <p>1</p>
+          </div>
+          <div className='growing-background' ref={growingBackground}/>
         </div>
-          <div className='affiliations' ref={affiliations}>
-              {/* AICPA, WSCPA, QuickBooks Pro Advisors */}
-              <img src="https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg" className="mcdonalds" />
-            
-            
-              <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" className="google" />
-            
-            
-              <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" className="apple" />
-            
-              <img src="https://www.svgrepo.com/show/303137/airbnb-2-logo.svg" className="airbnb" />
-            
+
+        <section>
+          <div className='border-box'>
+            <h3>Borders</h3>
+            <p>Why has On the Border come to mind? It's not even in sight.</p>
           </div>
-          <div className='reviews'>
-            <div className='review-card'></div>
-            <div className='review-card'></div>
-            <div className='review-card'></div>
-            <div className='review-card'></div>
-            <div className='review-card'></div>
+          <div className='first-image'>
+            <p>3</p>
           </div>
-          <div className='call-to-action' onScrollCapture={parallax} ref={parallaxBg}>
-            <div className="text">RANDOM</div>
+        </section>
+
+        <div className='border-container' ref={borderContainer}>
+          <div className='border-box'>
+            <h3>Borders</h3>
+            <p>Why has On the Border come to mind? It's not even in sight.</p>
           </div>
+          <div className='left-border' ref={leftBorder}>
+          </div>
+          <div className='top-border' ref={topBorder}>
+            <div className='inv-slide'>
+              <h3>Accounting</h3>
+              <p>Something about accounting</p>
+            </div>
+            <div className='inv-slide'>
+              <h3>Payroll</h3>
+              <p>Info about paying people</p>
+            </div>
+            <div className='inv-slide'>
+              <h3>Advisory</h3>
+              <p>Helping people to do things</p>
+            </div>
+          </div>
+          <div className='first-image'>
+            <p>2</p>
+          </div>
+        </div>
+
+        <div className='affiliations' ref={affiliations}>
+            {/* AICPA, WSCPA, QuickBooks Pro Advisors */}
+            <img src="https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg" className="mcdonalds" />
+          
+          
+            <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" className="google" />
+          
+          
+            <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" className="apple" />
+          
+            <img src="https://www.svgrepo.com/show/303137/airbnb-2-logo.svg" className="airbnb" />
+          
+        </div>
+        <div className='reviews'>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+          <div className='review-card'></div>
+        </div>
+        <div className='call-to-action' ref={parallaxBg}>
+          <div className="text">RANDOM</div>
+        </div>
       </>
     )
 }

@@ -37,9 +37,9 @@
     filter: blur(20px);
 }
 
-*.show {
+/* *.show {
     animation: fade-in 0.5s linear forwards;
-}
+} */
      
 .service-cards {
     width: 90vw;
@@ -169,7 +169,7 @@ h3 {
     object-fit: cover;
 }
 
-.side-service-button {
+/* .side-service-button {
     writing-mode: vertical-lr;
     height: 60vh;
     font-size: 5rem;
@@ -178,10 +178,8 @@ h3 {
     transform: rotate(-180deg);
     top: 20vh;
     cursor: pointer;
-    /* width: 0; */
-    /* visibility: hidden; */
     overflow: hidden;
-}
+} */
 
 .services-text {
     transform: translateX(-100%);
@@ -281,6 +279,102 @@ h3 {
     font-family: "Franklin Gothic Heavy";
     font-size: 15vw;
     color: whitesmoke;
+}
+
+.snap-container, .border-container {
+    margin: 20vh auto;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+section {
+    --trans-perc: 50%;
+    --height: 2%;
+    padding: 0 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    width: 100%;
+    height: var(--height);
+    background: linear-gradient(
+        90deg,
+        transparent var(--trans-perc),
+        black var(--trans-perc),
+        black calc(100% - var(--trans-perc)),
+        transparent calc(100% - var(--trans-perc))
+    );
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.first-words, .first-image, .border-box {
+    width: 50%;
+    min-height: 60vh;
+}
+
+.first-words {
+    background-color: black;
+    color: white;
+}
+
+.first-image {
+    color: white;
+    background: linear-gradient(black, 50%, white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 6rem;
+    }
+}
+
+.growing-background {
+    background-color: red;
+    position: absolute;
+    width: 50%;
+    height: 60vh;
+    top: 0;
+    left: 0;
+    /* transform-origin: top left; */
+}
+
+.border-box {
+    box-sizing: border-box;
+    border: solid black 10px;
+    padding: 2.5% 5%;
+}
+
+.left-border, .top-border {
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;   
+}
+
+.left-border {
+    width: 10px;
+    height: 60vh;
+}
+
+.top-border {
+    width: 50%;
+    height: 10px;
+}
+
+.inv-slide {
+    opacity: 0%;
 }
 
 @keyframes fade-in {

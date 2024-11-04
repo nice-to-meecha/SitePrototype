@@ -7,6 +7,11 @@ import Navbar from './Navbar.jsx'
 import Test from './Test.jsx'
 import './index.css'
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger);
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
