@@ -208,23 +208,41 @@ export default function Test() {
     const sectionColorChange = gsap.timeline({
       scrollTrigger: {
         trigger: "section",
-        start: "20% 20%",
+        start: "top 15%",
         scrub: false,
         toggleActions: "play none none reset",
-        markers: true,
+        markers: false,
         invalidateOnRefresh: true
       }
     });
 
     sectionColorChange.to("section", {
       "--trans-perc": "0%",
-      duration: 0.75,
+      duration: 0.5,
     })
       .to("section", {
         "--height": "100%",
-        duration: 1,
+        duration: 1.2,
       })
+      .to("section > .border-box, section > .first-image", {
+        display: "none",
+      }, "<0.1")
+      .to(".service-slides, .sticky-image", {
+        display: "block",
+      });
 
+    const cubeTurn = gsap.timeline({
+      repeat: -1,
+      defaults: {
+        duration: 3,
+      }
+    });
+    cubeTurn.to(".cube", { rotateX: -90,  rotateY: 0  })
+      .to(".cube", { rotateX: -90,  rotateY: -90 })
+      .to(".cube", { rotateX: -90,  rotateY: -180 })
+      .to(".cube", { rotateX: 0, rotateY: -180 })
+      .to(".cube", { rotateX: 0, rotateY: -270 })
+      .to(".cube", { rotateX: 0,  rotateY: -360 });
   }, []);
 
     return (
@@ -333,9 +351,25 @@ export default function Test() {
           <div className='first-image'>
             <p>3</p>
           </div>
+          <div className='service-slides'>
+            <div className='slide-card'>
+              <h3>Accounting</h3>
+              <p>Something about accounting</p>
+            </div>
+            <div className='slide-card'>
+              <h3>Payroll</h3>
+              <p>Info about paying people</p>
+            </div>
+            <div className='slide-card'>
+              <h3>Advisory</h3>
+              <p>Helping people to do things</p>
+            </div>
+          </div>
+          <div className='sticky-image'>
+          </div>
         </section>
 
-        <div className='border-container' ref={borderContainer}>
+        {/* <div className='border-container' ref={borderContainer}>
           <div className='border-box'>
             <h3>Borders</h3>
             <p>Why has On the Border come to mind? It's not even in sight.</p>
@@ -359,11 +393,79 @@ export default function Test() {
           <div className='first-image'>
             <p>2</p>
           </div>
-        </div>
+        </div> */}
 
         <div className='affiliations' ref={affiliations}>
+          <div className='affiliations-background'>
+            <svg version="1.1"
+              width="500"
+              height="500"
+              viewBox="0 0 500 500"
+              xmlns="http://www.w3.org/2000/svg"
+              className='initial-logo'
+            >
+              <path d="M10,490 v-320 a160,160,0,0,1,160,-160 v340 Z" fill="#2c365d"/>
+              <path d="M170,490 v-320 a160,160,0,0,1,160,-160 v340 Z" fill="#f49531"/>
+              <path d="M330,490 v-320 a160,160,0,0,1,160,-160 v340 Z" fill="#bebebe"/>
+              <path d="M490,490 v-80 l-80,80 Z" fill="#2c365d" />
+            </svg>
+
+            <p className='plus-sign'>+</p>
+
+            <div className='cube-scene'>
+              <div className='cube'>
+                <div className='face'>
+                  <p>1</p>
+                </div>
+                <div className='face'>
+                  <p>2</p>
+                </div>
+                <div className='face'>
+                  <p>3</p>
+                </div>
+                <div className='face'>
+                  <p>4</p>
+                </div>
+                <div className='face'>
+                  <p>5</p>
+                </div>
+                <div className='face'>
+                  <p>6</p>
+                </div>
+              </div>
+            </div>
+
+            {/* <svg version="1.1"
+              width="180"
+              height="500"
+              viewBox="0 0 180 500"
+              xmlns="http://www.w3.org/2000/svg"
+              className='left-logo'
+            >
+              <path d="M10,490 v-320 a160,160,0,0,1,160,-160 v340 Z" fill="#2c365d"/>
+            </svg>
+            <svg version="1.1"
+              width="180"
+              height="500"
+              viewBox="0 0 180 500"
+              xmlns="http://www.w3.org/2000/svg"
+              className='mid-logo'
+            >
+              <path d="M10,490 v-320 a160,160,0,0,1,160,-160 v340 Z" fill="#f49531"/>
+            </svg>
+            <svg version="1.1"
+              width="180"
+              height="500"
+              viewBox="0 0 180 500"
+              xmlns="http://www.w3.org/2000/svg"
+              className='right-logo'
+            >
+              <path d="M10,490 v-320 a160,160,0,0,1,160,-160 v340 Z" fill="#bebebe"/>
+              <path d="M170,490 v-80 l-80,80 Z" fill="#2c365d" />
+            </svg> */}
+          </div>
             {/* AICPA, WSCPA, QuickBooks Pro Advisors */}
-            <img src="https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg" className="mcdonalds" />
+            {/* <img src="https://www.svgrepo.com/show/303106/mcdonald-s-15-logo.svg" className="mcdonalds" />
           
           
             <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" className="google" />
@@ -371,7 +473,7 @@ export default function Test() {
           
             <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" className="apple" />
           
-            <img src="https://www.svgrepo.com/show/303137/airbnb-2-logo.svg" className="airbnb" />
+            <img src="https://www.svgrepo.com/show/303137/airbnb-2-logo.svg" className="airbnb" /> */}
           
         </div>
         <div className='reviews'>

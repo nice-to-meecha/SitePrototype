@@ -193,48 +193,96 @@ h3 {
 }
 
 .affiliations {
+    height: 1000vh;
+}
+
+.affiliations-background {
     width: 100vw;
-    
-    display: grid;
-    justify-items: flex-end;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 25vh);
-    grid-template-areas:
-        "mcdonalds ."
-        "mcdonalds google"
-        "apple google"
-        "apple airbnb"
-        ". airbnb";
-    column-gap: 75px;
-    margin-bottom: 25vh;
+    gap: 5%;
 }
 
-.mcdonalds, .google, .apple, .airbnb {
-    width: 50%;
-    height: auto;
-    opacity: 0%;
-    filter: blur(20px);
+.initial-logo {
+    width: 20%;
 }
 
-.google, .airbnb {
-    justify-self: flex-start;
+.plus-sign {
+    font-size: 10rem;
+    color: gray;
 }
 
-.mcdonalds {
-    grid-area: mcdonalds;
+.cube-scene {
+    width: 20vw;
+    min-height: 20vw;
+    perspective: 400px;
 }
 
-.google {
-    grid-area: google;
+.cube {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    position: absolute;
+    transform: translateZ(-10vw);
 }
 
-.apple {
-    grid-area: apple;
+.face {
+    position: absolute;
+    width: 20vw;
+    height: 20vw;
+    backface-visibility: hidden;
 }
 
-.airbnb {
-    grid-area: airbnb;
+.face:nth-child(1) {
+    transform: rotateY(0deg) translateZ(10vw);
+    background:
+        no-repeat
+        center/100%
+        url("https://images.ctfassets.net/rb9cdnjh59cm/43ZKFkefBBGDMM3VoBYWIP/b4d7a47dedb6d7232936e0c8beb6e764/Logo_1200x630.png");
+}
+
+.face:nth-child(2) {
+    transform: rotateY(90deg) rotateZ(90deg) translateZ(10vw);
+    background:
+        no-repeat
+        center/70%
+        url("https://insightfulaccountant.com/downloads/4331/download/1_Badge_Online_large.png?cb=b12565cb41765f0ed8749d76f13cdc1b&w=1042");
+}
+
+.face:nth-child(3) {
+    transform: rotateY(180deg) translateZ(10vw);
+    background:
+        no-repeat
+        center/100%
+        url("https://www.wscpa.org/media/logo.png");
+}
+
+.face:nth-child(4) {
+    transform: rotateY(-90deg) translateZ(10vw);
+    background:
+        no-repeat
+        center/70%
+        url("https://insightfulaccountant.com/downloads/4331/download/1_Badge_Online_large.png?cb=b12565cb41765f0ed8749d76f13cdc1b&w=1042");
+}
+
+.face:nth-child(5) {
+    transform: rotateX(90deg) translateZ(10vw);
+    background:
+        no-repeat
+        center/100%
+        url("https://www.wscpa.org/media/logo.png");
+}
+
+.face:nth-child(6) {
+    transform: rotateX(-90deg) rotateZ(180deg) translateZ(10vw);
+    background:
+        no-repeat
+        center/100%
+        url("https://images.ctfassets.net/rb9cdnjh59cm/43ZKFkefBBGDMM3VoBYWIP/b4d7a47dedb6d7232936e0c8beb6e764/Logo_1200x630.png");
 }
 
 .reviews {
@@ -292,13 +340,16 @@ h3 {
 
 section {
     --trans-perc: 50%;
-    --height: 2%;
+    --height: 0.5%;
     padding: 0 15vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex;
+    justify-content: center; */
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, [sec-row] 70vh);
     position: relative;
-    overflow: hidden;
+    height: 240vh;
 }
 
 section::before {
@@ -314,13 +365,40 @@ section::before {
     );
     position: absolute;
     top: 0;
+    z-index: 0;
+}
+
+.service-slides {
     z-index: 1;
+    display: none;
+}
+
+.service-slides .slide-card {
+    color: white;
+}
+
+.sticky-image {
+    width: 100%;
+    height: 60vh;
+    background: linear-gradient(white, black);
+    z-index: 1;
+    display: none;
+    position: sticky;
+    top: 20%;
 }
 
 .first-words, .first-image, .border-box {
-    width: 50%;
+    width: 100%;
     min-height: 60vh;
 }
+
+/* .first-words, .first-image {
+    width: 100%;
+}
+
+.border-box {
+    width: 50%;
+} */
 
 .first-words {
     background-color: black;
