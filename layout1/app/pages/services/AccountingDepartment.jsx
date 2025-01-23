@@ -3,11 +3,7 @@ import "../../css/pages/services/AccountingDepartment.css"
 export default function AccountingDepartment() {
 
     return(
-        <>
-            <div className="service-hero">
-                Services: Accounting Department
-            </div>
-            
+        <>  
             <p>
                 Our Accounting Department is designed to alleviate the burden of financial management.
                 We offer a wide range of accounting services, including:

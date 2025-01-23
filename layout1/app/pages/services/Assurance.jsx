@@ -4,10 +4,6 @@ export default function Assurance() {
 
     return (
         <>
-            <div className="service-hero">
-                Services: Assurance
-            </div>
-
             <h5>Audit Services:</h5>
             <p>
                 Our audits provide an independent, thorough examination of your financial statements

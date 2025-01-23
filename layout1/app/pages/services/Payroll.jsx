@@ -4,10 +4,6 @@ export default function Payroll() {
 
     return (
         <>
-            <div className="service-hero">
-                Services: Payroll Services
-            </div>
-
             <p>
                 At Blantyre Business Services (BBS), our payroll services are designed to ensure
                 that your employees receive accurate and timely payments, allowing you to focus on

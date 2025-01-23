@@ -4,10 +4,6 @@ export default function Advisory() {
 
     return (
         <>
-            <div className="service-hero">
-                Services: Advisory
-            </div>
-
             <p>
                 At Blantyre Business Services (BBS), our Advisory Services go beyond traditional
                 consulting; we strive to be your strategic partners, committed to empowering your
