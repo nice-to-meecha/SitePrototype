@@ -7,7 +7,7 @@ export default [
     index("./pages/Home.jsx"),
     route("about", "./pages/About.jsx"),
     route("contact", "./pages/Contact.jsx"),
-    route("service", "./pages/services/Service.jsx", [
+    route("services", "./pages/services/Service.jsx", [
         route("accounting-department", "./pages/services/AccountingDepartment.jsx"),
         route("advisory", "./pages/services/Advisory.jsx"),
         route("assurance", "./pages/services/Assurance.jsx"),

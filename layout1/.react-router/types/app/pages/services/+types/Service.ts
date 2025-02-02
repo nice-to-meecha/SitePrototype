@@ -11,7 +11,7 @@ export type Info = {
   parents: [Parent0],
   id: "pages/services/Service"
   file: "./pages/services/Service.jsx"
-  path: "service"
+  path: "services"
   params: {} & { [key: string]: string | undefined }
   module: Module
   loaderData: T.CreateLoaderData<Module>

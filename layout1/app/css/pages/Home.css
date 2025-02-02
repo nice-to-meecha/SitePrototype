@@ -4,10 +4,11 @@ h1 {
     font-style: normal;
     text-align: center;
     font-size: 4em;
-    margin: 10% 20% 0.67em;
+    /* margin: 10% 20% 0.67em; */
 }
 
-.hero {
+.home-hero {
     width: 100%;
     height: 100vh;
+    display: flex;
 }

@@ -4,9 +4,13 @@ import {
     Outlet,
 } from "react-router"
 import { StrictMode } from 'react'
+import NavBar from "./components/NavBar.jsx"
+import Footer from "./components/Footer.jsx"
 
-export default function App() {
-    
+import "./css/root.css"
+
+export function Layout({ children }) {
+
     return (
         <StrictMode>
             <html lang="en">
@@ -16,12 +20,22 @@ export default function App() {
                     <title>BBS</title>
                 </head>
                 <body>
+                    <NavBar />
                     <main>
-                        <Outlet />
+                        {/* children will be the root Component, ErrorBoundary, or HydrateFallback */}
+                        { children }
+                        
                     </main>
+                    <Footer />
                 </body>
             </html>
         </StrictMode>
+    );
+  }
+
+export default function App() {
+    return (
+        <Outlet />
     );
 }
 
