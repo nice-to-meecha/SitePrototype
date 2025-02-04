@@ -1,26 +1,27 @@
 import { NavLink } from "react-router";
-import { useEffect } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useRef, useState, } from "react";
 
 import "../css/components/NavBar.css"
 
+export async function clientAction() {
+    ScrollTrigger.refresh();
+}
+
 export default function NavBar({ renderStmt }) {
 
-    if (typeof window !== "undefined") {
-        // browser code
-        useEffect(() => {
-            if (typeof window !== 'undefined') {
-              console.log('This runs only in the browser');
-            }
-        }, []);
-        
-    }
-      
+    // const [ scrollPosition, setScrollPosition ] = useState(0);
+    const navbar = useRef();
+
+    
 
     renderStmt("NavBar");
 
     return (
         <>
-            <div className="navbar">
+            <div className="navbar" ref={navbar}>
                 <div className="logo">
                     <NavLink to="/">
                         <img src="/BBS-logo.svg" />

@@ -8,10 +8,14 @@ import {
 } from "react-router"
 import { StrictMode, useEffect } from 'react'
 import { useGSAP } from "@gsap/react"
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import NavBar from "./components/NavBar.jsx"
 import Footer from "./components/Footer.jsx"
 
 import "./css/root.css"
+
+gsap.registerPlugin(ScrollTrigger);
 
 function renderStmt(page) {
     console.log(`Rendering ${page}`);
@@ -44,19 +48,31 @@ export function Layout({ children }) {
 
 export default function App() {
 
-    // console.log("App is running");
+    useEffect(() => {
+        /*
+            Refresh needed to recalculate ScrollTrigger (and other)
+            animation locations, since it's first calculated before
+            entire page loads
+        */
+        ScrollTrigger.refresh();
+    });
 
-    // useEffect(() => {
-    //     console.log("Running handleToggleNavBarOnScroll");
-    //     // window.addEventListener("scroll", (window) => {
-    //     //     console.log(`Scroll Y: ${window.scrollY}`);
-    //     // });
+    useGSAP((context, contextSafe) => {
+        const showAnim = gsap.from('.navbar', { 
+            yPercent: -100,
+            paused: true,
+            duration: 0.2
+        }).progress(1);
 
-    //     // return () => {
-    //     //     window.removeEventListener("scroll");
-    //     // }
-
-    // }, []);
+        ScrollTrigger.create({
+            start: "top top",
+            end: "max",
+            markers: true,
+            onUpdate: (self) => {
+                self.direction === -1 ? showAnim.play() : showAnim.reverse()
+            }
+        });
+    });
 
     return (
         <Outlet />

@@ -2,41 +2,16 @@ import { useEffect } from "react";
 
 import "../css/routes/Home.css"
 
-export async function clientLoader(args) {
-    console.log(`ClientLoader args: ${args}`);
-    return {};
+export function HydrateFallback() {
+
+    return (
+        <>
+            <h1>Loading Home...</h1>
+        </>
+    )
 }
 
-// export function HydrateFallback() {
-
-//     return (
-//         <>
-//             <h1>Loading Home...</h1>
-//         </>
-//     )
-// }
-
-export async function clientAction({ serverAction }) {
-    console.log(`ClientAction args: ${args}`);
-    return {};
-  }
-
 export default function Home({ actionData, loaderData, }) {
-
-    // renderStmt("Home");
-
-    // console.log('Home component is rendering');
-
-
-    // useEffect(() => {
-    //     console.log("Code here will run after *every* render");
-    // });
-
-    // useEffect(() => {
-    //     console.log('useEffect is running');
-    //   }, []); // Runs on mount
-
-    // useEffect(() => console.log("useEffect() in Home"), []);
 
     return (
         <>
