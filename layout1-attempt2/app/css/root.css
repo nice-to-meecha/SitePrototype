@@ -1,0 +1,26 @@
+:root {
+    --bbs-blue: #2C365D;
+    --bbs-orange: #F49531;
+    --bbs-gray: #BEBEBE;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0px;
+    overflow-y: scroll;
+}
+
+main {
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    overflow-y: scroll;
+}
+
+a, a:hover, a:visited {
+    text-decoration: none;
+    color: inherit;
+}

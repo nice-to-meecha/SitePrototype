@@ -1,0 +1,91 @@
+footer {
+    width: calc(100% - 60px);
+    height: 100vh;
+    background-color: var(--bbs-blue);
+    z-index: 0;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    padding: 0% 30px;
+}
+
+footer .top-row {
+    width: 100%;
+    height: 45%;
+}
+
+footer .bottom-row {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+footer .logo {
+    height: 100%;
+    margin-right: auto;
+    position: relative;
+}
+
+footer svg {
+    width: 54vh;
+    height: 1px;
+    padding-bottom: 54vh;
+    overflow: visible;
+    position: absolute;
+    bottom: 0;
+}
+
+footer .BBS-text {
+    fill: white;
+    font-size: 25cap;
+}
+
+footer .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    align-items: flex-end;
+}
+
+footer .links {
+    display: flex;
+    width: 100%;
+    height: 45%;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+    gap: clamp(10px, 15%, 20%);
+}
+
+footer .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+footer a {
+    display: block;
+}
+
+footer a:hover, footer .social-media {
+    color: var(--bbs-orange);
+}
+
+footer .social-media {
+    display: flex;
+    gap: 10px;
+}
+
+footer .social-media a:hover {
+    color: white;
+}
