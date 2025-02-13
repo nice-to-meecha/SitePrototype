@@ -28,9 +28,9 @@ export default function NavBar({ renderStmt }) {
                     </NavLink>
                 </div>
                 <div className="right-justified-navbar-links">
-                    <div className="services-menu-opener">Services</div>
-                    <NavLink to="/about">About</NavLink>
-                    <NavLink to="/contact">Contact</NavLink>
+                    <div className="services-menu-opener stagger-entry">Services</div>
+                    <NavLink to="/about" className="stagger-entry">About</NavLink>
+                    <NavLink to="/contact" className="stagger-entry">Contact</NavLink>
                 </div>
             </div>
         </>

@@ -9,13 +9,14 @@ import {
 import { StrictMode, useEffect } from 'react'
 import { useGSAP } from "@gsap/react"
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import NavBar from "./components/NavBar.jsx"
 import Footer from "./components/Footer.jsx"
 
 import "./css/root.css"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { TextPlugin } from "gsap/dist/TextPlugin";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 function renderStmt(page) {
     console.log(`Rendering ${page}`);
@@ -67,7 +68,6 @@ export default function App() {
         ScrollTrigger.create({
             start: "top top",
             end: "max",
-            markers: true,
             onUpdate: (self) => {
                 self.direction === -1 ? showAnim.play() : showAnim.reverse()
             }

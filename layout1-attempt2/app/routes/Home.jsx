@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import "../css/routes/Home.css"
 
@@ -11,12 +14,141 @@ export function HydrateFallback() {
     )
 }
 
-export default function Home({ actionData, loaderData, }) {
+export async function clientLoader() {
+    return {
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+    };
+}
+
+function createGrid(width, height, diameter, gap) {
+    const rows = Math.ceil(height / gap),
+        cols = Math.ceil(width / gap);
+    console.log(`Width: ${width}\nRows: ${rows}\nHeight: ${height}\nColumns: ${cols}`);
+    const grid = new Array(rows * cols);
+
+    for (let y = 0; y <= height; y += gap) {
+        for (let x = 0; x <= width; x += gap) {
+            grid.push(<circle r={diameter} cx={`${x}`} cy={`${y}`} key={(x * rows + y + 1)}></circle>);
+        }
+    }
+
+    return grid;
+}
+
+export default function Home({ loaderData, }) {
+
+    const homeHero = useRef(), grid = useRef();
+    const { innerWidth, innerHeight } = loaderData;
+
+    useGSAP(() => {
+        // gsap.timeline({
+        //     scrollTrigger: {
+        //         trigger: grid.current,
+        //         start: "bottom center",
+        //         end: "top top",
+        //         markers: true,
+        //         toggleActions: "play none none none",
+        //     },
+        // })
+        //     .to("circle", {
+        //         y: "+=50vh",
+        //         attr: {
+        //             cx: (index, target, targetArr) => {
+        //                 console.log(index, targetArr.length);
+        //                 return index < 0.5 * targetArr.length ? "-=150" : "+=150";
+        //             },
+        //         },
+        //         duration: 2,
+        //         // repeat: -1,
+        //         // delay: 1,
+        //         // yoyo: true,
+        //         stagger: {
+        //             each: 1,
+        //             grid: [11, 56],
+        //             axis: "y",
+        //             from: "end",
+        //         },
+        //     })
+        //     .to(grid.current, {
+        //         attr: {
+        //             viewBox: "0 0 16 9",
+        //         }
+        //     }, "<");
+    }, { scope: grid.current })
+
+    useGSAP(() => {
+        gsap.timeline({ autoRemoveChildren: true, })
+            .from(".home-hero .title", {
+                opacity: 0,
+                filter: "blur(20px)",
+                duration: 2,
+                delay: 0.5,
+            })
+            .from(".navbar .logo", {
+                yPercent: -100,
+                duration: 0.4,
+                ease: "power2.inOut",
+            })
+            .from(".navbar .stagger-entry", {
+                yPercent: -300,
+                stagger: {
+                    each: 0.2,
+                    ease: "power2.inOut",
+                },
+            });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".services-title",
+                start: "bottom-=25% bottom",
+                end: "+=0% center",
+                markers: true,
+                toggleActions: "none play none reset",
+            },
+        })
+            .from(".services-partnership-1", {
+                opacity: 0,
+                yPercent: -100,
+                duration: 0.5,
+                ease: "back.out",
+            })
+            // .to(".services-partnership-2", {
+            //     duration: 2,
+            //     ease: "power2.inOut",
+            //     text: {
+            //         value: "we invest in a partnership.",
+            //         delimiter: " ",
+            //         // ease: "power2.out",
+            //     }
+            // })
+            .from(".type-text", {
+                opacity: 0,
+                yPercent: (index, target, targetArr) => -50 / (targetArr.length - index),
+                ease: "back.out",
+                stagger: {
+                    each: 0.1,
+                }
+            })
+    });
 
     return (
         <>
-            <div className="home-hero">
-                <h1>Your Financial Advisor for Every Season</h1>
+            <div className="home-hero" ref={homeHero}>
+                <div className="title">Your Financial Advisor for Every Season</div>
+                <div className="grid-background">
+                    <svg
+                        ref={grid}
+                        viewBox={`0 0 ${innerWidth} ${innerHeight}`}
+                        width={innerWidth}
+                        height={innerHeight}
+                        preserveAspectRatio="xMidYMin slice"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        {createGrid(innerWidth, innerHeight * 0.3, 1.5, 20)}
+                    </svg>
+                </div>
             </div>
 
             <div className="business-aim">
@@ -35,11 +167,21 @@ export default function Home({ actionData, loaderData, }) {
             </div>
 
             <div className="services">
-                <h4>Services</h4>
-                <p>
-                    At Blantyre Business Services, we don't just offer services;
-                    we invest in a partnership.
-                </p>
+                <div className="services-intro">
+                    <div className="services-title">Services</div>
+                    <p className="services-partnership-1">
+                        At Blantyre Business Services, we don't just offer services;
+                    </p>
+                    <div className="services-partnership-2-container">
+                        <p className="services-partnership-2">
+                            <div className="type-text">we&nbsp;</div>
+                            <div className="type-text">invest&nbsp;</div>
+                            <div className="type-text">in&nbsp;</div>
+                            <div className="type-text">a&nbsp;</div>
+                            <div className="type-text">partnership.</div>
+                        </p>
+                    </div>
+                </div>
 
                 <h5>Accounting Department</h5>
                 <p>

@@ -4,20 +4,14 @@
     --bbs-gray: #BEBEBE;
 }
 
-html {
-    overflow-y: scroll;
-}
-
 body {
     margin: 0px;
-    overflow-y: scroll;
 }
 
 main {
     background-color: white;
     z-index: 1;
     position: relative;
-    overflow-y: scroll;
 }
 
 a, a:hover, a:visited {
